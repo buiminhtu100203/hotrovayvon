@@ -80,22 +80,23 @@
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">Đăng Ký Tư Vấn Khoản Vay</h2>
             <p class="text-center text-gray-500 text-sm mb-6">Điền thông tin dưới đây, chúng tôi sẽ liên hệ lại sau 5 phút.</p>
             
-            <form id="loanForm" class="space-y-4">
+            <form id="loanForm" action="https://api.sheetmonkey.io/form/oyZJzy35J6q4GFdqt3qcgz" method="POST" class="space-y-4">
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Họ và tên của bạn *</label>
-                    <input type="text" id="fullName" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="Ví dụ: Nguyễn Văn A">
+                    <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="Ví dụ: Nguyễn Văn A">
                 </div>
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Số điện thoại nhận tư vấn *</label>
-                    <input type="tel" id="phoneNumber" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="Ví dụ: 0912345678">
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="Ví dụ: 0912345678">
                 </div>
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Số tiền cần vay *</label>
-                    <select id="loanAmount" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                        <option value="30-100tr">Từ 50 triệu - 100 triệu</option>
+                    <select id="loanAmount" name="loanAmount" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                        <option value="50-100tr">Từ 50 triệu - 100 triệu</option>
                         <option value="tren-100tr">Trên 100 triệu </option>
                     </select>
                 </div>
+                <input type="hidden" name="x-sheetmonkey-redirect" value="[https://hotrotaichinh.vercel.app/]">
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition text-lg mt-2">
                     Gửi Đăng Ký Ngay
                 </button>
@@ -118,19 +119,10 @@
 
     <!-- Xử lý JavaScript để nhận dữ liệu từ Form đăng ký -->
     <script>
-        document.getElementById('loanForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('fullName').value;
-            const phone = document.getElementById('phoneNumber').value;
-            const amount = document.getElementById('loanAmount').value;
-
-            // Tại đây, bạn có thể tích hợp API gửi dữ liệu về Telegram, Google Sheet hoặc Gmail.
-            // Tạm thời, chúng ta sẽ thông báo thành công cho khách hàng:
-            alert(`Cảm ơn anh/chị ${name}! Đăng ký gói vay ${amount} của bạn đã được tiếp nhận. Nhân viên sẽ liên hệ lại qua SĐT: ${phone} trong giây lát.`);
-            
-            // Reset lại form
-            this.reset();
-        });
-    </script>
+    // Đoạn script này giúp hiển thị thông báo trước khi chuyển trang gửi dữ liệu
+    document.getElementById('loanForm').addEventListener('submit', function() {
+        alert("Yêu cầu của bạn đang được xử lý và gửi đi. Vui lòng đợi trong giây lát!");
+    });
+</script>
 </body>
 </html>
